@@ -1,6 +1,4 @@
-
-- 21/07
-ass
+__pycache__
 
 # C extensions
 *.so
