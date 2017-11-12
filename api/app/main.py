@@ -1,10 +1,9 @@
 from flask import Flask, jsonify, request
-import mongoengine
 from models.event import Event
+from mongodb import connector as mongo_connector
 
 app = Flask(__name__)
-
-mongoengine.connect('organizer', username='bia', password='supersecurepwd')
+mongo_connector.connect()
 
 @app.route('/health-check')
 def health_check():
