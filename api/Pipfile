@@ -1,0 +1,20 @@
+[[source]]
+url = 'https://pypi.python.org/simple'
+verify_ssl = true
+name = 'pypi'
+
+[requires]
+python_version = '3.6'
+
+[packages]
+click = "*"
+flask = "*"
+pymongo = "*"
+mongoengine = "*"
+python-decouple = "*"
+
+[dev-packages]
+ipdb = "*"
+pytest = "*"
+pytest-cov = "*"
+pytest-flake8 = "*"

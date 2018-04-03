@@ -1,5 +1,16 @@
 """connector helps us connect mongodb"""
-import mongoengine
+from contextlib import contextmanager
 
-def connect():
-    mongoengine.connect('organizer', username='bia', password='supersecurepwd')
+from mongoengine import connect
+from decouple import config
+
+
+def make_connection():
+    return connect(host=config("DATABASE_URL"))
+
+
+@contextmanager
+def handle_connection():
+    connection = make_connection()
+    yield connection
+    connection.close()

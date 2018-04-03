@@ -1,9 +1,15 @@
 from flask import Flask, jsonify
-from mongodb import connector as mongo_connector
+
+
+from app.mongodb.connector import handle_connection
+from app.routes.events import blueprint as events
+
 
 app = Flask(__name__)
-mongo_connector.connect()
+app.register_blueprint(events)
+
 
 @app.route('/health-check')
 def health_check():
-    return jsonify({"message" : "I'm alive."})
+    with handle_connection():
+        return jsonify({"message": "I'm alive."})
