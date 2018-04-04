@@ -1,0 +1,19 @@
+version: '3'
+services:
+  db:
+    image: mongo:3.0.15
+    ports:
+      - "27017:27017"
+  web:
+    build:
+      context: .
+    command: flask run --host=0.0.0.0
+    volumes:
+      - .:/app
+    ports:
+    - "5000:5000"
+    depends_on:
+      - db
+    environment:
+      - FLASK_APP=app/main.py
+      - DATABASE_URL=mongodb://db:27017/organizer
